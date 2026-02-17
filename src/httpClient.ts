@@ -17,8 +17,8 @@ export class HttpClient {
     const headers = opts?.headers ?? {};
 
     if (api) {
-      // Before: plain-object tokens were treated as valid, so refresh did not run and no Authorization header was set.
-      // After: any non-OAuth2Token value triggers refresh, so a real token is created and used.
+      // Before erorrn this type of erorr is happens : plain-object tokens were treated as valid, so refresh did not run and no Authorization header was set.
+      // After fix the issues: any non-OAuth2Token value triggers refresh, so a real token is created and used.
       const needsRefresh =
         !(this.oauth2Token instanceof OAuth2Token) || this.oauth2Token.expired;
 
