@@ -24,7 +24,7 @@ describe("HttpClient OAuth2 behavior", () => {
   });
 
   test("api=true refreshes when token is a plain object", () => {
-    // This is the key failing case.
+    
     const c = new HttpClient();
     c.oauth2Token = { accessToken: "stale", expiresAt: 0 };
 
