@@ -17,10 +17,12 @@ export class HttpClient {
     const headers = opts?.headers ?? {};
 
     if (api) {
-      if (
-        !(this.oauth2Token instanceof OAuth2Token) ||
-        this.oauth2Token.expired
-      ) {
+      // Before: plain-object tokens were treated as valid, so refresh did not run and no Authorization header was set.
+      // After: any non-OAuth2Token value triggers refresh, so a real token is created and used.
+      const needsRefresh =
+        !(this.oauth2Token instanceof OAuth2Token) || this.oauth2Token.expired;
+
+      if (needsRefresh) {
         this.refreshOAuth2();
       }
 

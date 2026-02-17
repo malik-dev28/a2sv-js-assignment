@@ -27,27 +27,10 @@ Requirements:
 
 ### 3) README updates (required)
 
-## How to run tests locally
+Update this README to include:
 
-1.  **Install dependencies**:
-    ```bash
-    npm install
-    ```
-2.  **Run tests**:
-    ```bash
-    npm test
-    ```
-
-## How to build and run tests with Docker
-
-1.  **Build the Docker image**:
-    ```bash
-    docker build -t a2sv-js-assignment .
-    ```
-2.  **Run the tests in a container**:
-    ```bash
-    docker run --rm a2sv-js-assignment
-    ```
+- how to run the tests locally,
+- how to build and run tests with Docker.
 
 ### 4) Find + fix a bug (required)
 
@@ -66,6 +49,20 @@ Your tasks:
 - Do not refactor unrelated code.
 - Do not introduce extra tooling unless required.
 - You may add tests and the smallest code change needed to fix the bug.
+
+## Running tests locally
+
+```bash
+npm install
+npm test
+```
+
+## Docker (build + run tests)
+
+```bash
+docker build -t ai-assignment-tests .
+docker run --rm ai-assignment-tests
+```
 
 ### 5) EXPLANATION.md (required)
 
