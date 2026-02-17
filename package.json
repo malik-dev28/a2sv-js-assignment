@@ -1,0 +1,12 @@
+{
+  "name": "ai-software-engineer-assignment-ts",
+  "version": "1.0.0",
+  "description": "AI Experts Assignment (JS/TS)",
+  "main": "src/httpClient.ts",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "1.6.0"
+  }
+}
