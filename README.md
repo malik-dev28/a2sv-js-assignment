@@ -1,78 +1,131 @@
 # AI Experts Assignment (JS/TS)
 
-This assignment evaluates your ability to:
+## Project Description
 
-- set up a small JavaScript/TypeScript project to run reliably (locally + in Docker),
-- pin dependencies for reproducible installs,
-- write focused tests to reproduce a bug,
-- implement a minimal, reviewable fix.
+This repository is a small JavaScript/TypeScript project created to demonstrate:
 
-## What you will do
+- how to run a Node.js project reliably in both local and container environments,
+- how to ensure reproducible installs by pinning dependency versions,
+- how to detect a bug using tests,
+- how to apply a minimal, reviewable fix.
 
-### 1) Dockerfile (required)
+The repository is designed so that the test suite can be executed:
 
-Create a `Dockerfile` so the project can run the test suite in a non-interactive, CI-style environment.
+1. Locally on a developer machine
+2. Inside Docker in a clean CI-style environment
 
-Requirements:
+Both approaches should produce the same results.
 
-- Your Docker image must run the test suite by default using npm test.
-- Ensure npm test works in a clean environment (Docker) without manual steps.
-- The build must install dependencies from package.json using npm install.
-- The image must run tests by default (use: `CMD ["npm", "test"]`).
+## Requirements
 
-### 2) Pin dependencies (required)
+Before running the project, install:
 
-- Pin dependency versions in package.json (no ^ / ~; use exact x.y.z).
-- Do not commit lockfiles (package-lock.json, yarn.lock, pnpm-lock.yaml).
+- Node.js (version 18 or newer recommended)
+- npm (comes with Node.js)
+- Docker (only needed for container testing)
 
-### 3) README updates (required)
+To verify installation:
 
-Update this README to include:
+```bash
+node -v
+npm -v
+docker -v
+```
 
-- how to run the tests locally,
-- how to build and run tests with Docker.
+## Running Tests Locally (Step-by-Step)
 
-### 4) Find + fix a bug (required)
+Follow these steps if you want to run the project directly on your machine.
 
-There is a bug somewhere in this repository.
+### Step 1 — Open the project folder
 
-Your tasks:
+Clone the repository and move into it:
 
-- Identify the bug through reading code and/or running tests.
-- Write tests that reproduce the bug (tests should fail on the current code).
-- Apply the smallest possible fix to make the tests pass.
-- Keep the change minimal and reviewable (no refactors).
+```bash
+git clone https://github.com/malik-dev28/a2sv-js-assignment.git
+cd a2sv-js-assignment
+```
 
-## Constraints
+### Step 2 — Install dependencies
 
-- Keep changes minimal and reviewable.
-- Do not refactor unrelated code.
-- Do not introduce extra tooling unless required.
-- You may add tests and the smallest code change needed to fix the bug.
-
-## Running tests locally
+Install packages from package.json:
 
 ```bash
 npm install
+```
+
+This will:
+
+- download all required libraries
+- install exact pinned versions
+- prepare the project for execution
+
+### Step 3 — Run the test suite
+
+Execute:
+
+```bash
 npm test
 ```
 
-## Docker (build + run tests)
+This will:
+
+- run the project's automated tests
+- verify that the bug fix works correctly
+- confirm the project runs as expected
+
+If everything is correct, the tests should pass with no extra setup.
+
+## Running Tests with Docker (Step-by-Step)
+
+Use this method to simulate a clean CI environment. Docker ensures the project
+works even without local Node/npm setup.
+
+### Step 1 — Make sure Docker is running
+
+Check:
+
+```bash
+docker -v
+```
+
+If Docker is not running, start it first.
+
+### Step 2 — Build the Docker image
+
+From the project root folder, run:
 
 ```bash
 docker build -t ai-assignment-tests .
+```
+
+This step will:
+
+- create a container image
+- install Node inside the container
+- copy the project files
+- install dependencies using npm install
+
+This may take a minute the first time.
+
+### Step 3 — Run the container
+
+```bash
 docker run --rm ai-assignment-tests
 ```
 
-### 5) EXPLANATION.md (required)
+This will:
 
-Create `EXPLANATION.md` (max 250 words) containing:
+- start a clean container
+- automatically run npm test
+- display the test results in your terminal
+- delete the container after it finishes
 
-- **What was the bug?**
-- **Why did it happen?**
-- **Why does your fix solve it?**
-- **One realistic case / edge case your tests still don’t cover**
+## Expected Result
 
-## Submission
+Both local and Docker runs should:
 
-- Submit a public GitHub repository URL containing your solution to the Google form link provided.
+- install dependencies successfully
+- execute the same test suite
+- produce identical results
+
+If both pass, the project is working correctly.
